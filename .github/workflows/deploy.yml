@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main # get code
+      - uses: actions/checkout@v3 # get code
       - uses: actions/setup-node@main
         with:
           node-version: 16
