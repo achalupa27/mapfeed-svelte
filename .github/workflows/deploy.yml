@@ -10,8 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master # get code
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@main # get code
+      - uses: actions/setup-node@main
         with:
           node-version: 16
       - run: npm ci
