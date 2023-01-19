@@ -51,7 +51,7 @@
 <div class="app">
 	<div class="title-bar">
 		<div class="selected-country">
-			<span>Country</span>
+			<span>Country Name</span>
 		</div>
 	</div>
 
