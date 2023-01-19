@@ -1,0 +1,21 @@
+name: Deploy MapFeed
+
+# run 'jobs' on every 'push' to 'branches': 'main'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master # get code
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm test:unit
+      - run: npm run build
+      - run: vercel --prod
+      # - run: npm run deploy

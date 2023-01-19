@@ -1,4 +1,3 @@
-<!--ues d3geo, topojson, geojson-->
 <script lang="ts">
 	import { feature } from 'topojson';
 	import * as d3 from 'd3';
