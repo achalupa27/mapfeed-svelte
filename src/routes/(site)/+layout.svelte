@@ -6,6 +6,7 @@
 		</div>
 		<div class="nav-section nav-details">
 			<div class="nav-pricing"><a href="/pricing">Pricing</a></div>
+			<div class="nav-pricing"><a href="/pricing">Features</a></div>
 		</div>
 		<div class="nav-section nav-register">
 			<a href="/sign-in"><div class="nav-signin">Sign In</div></a>
@@ -16,10 +17,30 @@
 
 <slot />
 
+<div class="site-footer">
+	<div>© 2023 MapFeed</div>
+	<a href="/about">About</a>
+	<a href="/FAQ">FAQ</a>
+	<a href="/terms">Terms of Use</a>
+	<a href="/privacy">Privacy Policy</a>
+	<a href="/cookies">Cookies Policy</a>
+	<a href="/disclaimer">Disclaimer</a>
+	<a href="/contact">Contact</a>
+</div>
+
 <style lang="sass">
     a
         text-decoration: none
         color: inherit
+
+    .site-footer 
+        font-size: 12px
+        display: flex
+        justify-content: space-between
+        color: var(--text-secondary)
+        background: #fcfcfc
+        padding: 9px 36px
+        border-top: 1px solid var(--border-color)
 
     .header 
         position: absolute
@@ -36,6 +57,7 @@
         .nav-section 
             flex: 1
             display: flex
+            gap: 24px
 
         .nav-details
             display: flex
