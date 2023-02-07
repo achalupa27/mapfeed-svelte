@@ -39,8 +39,8 @@
 				.append('path')
 				.attr('class', 'country')
 				.attr('d', (d: any) => pathGenerator(d))
-				.on('click', function (d) {
-					console.log('country clicked: ', countryName[d.id]);
+				.on('click', (d) => {
+					console.log(d.originalTarget.textContent);
 				})
 				.append('title')
 				.text((d: any) => countryName[d.id]);
@@ -51,7 +51,7 @@
 <div class="app">
 	<div class="title-bar">
 		<div class="selected-country">
-			<span>Country Name</span>
+			<span id="selectedCountry">Country Name</span>
 		</div>
 	</div>
 
@@ -66,10 +66,10 @@
 
 <style lang="sass">
 	:global(.country)
-		fill: #245a2d
+		fill: #0e430d
 
 		&:hover
-			fill: red
+			fill: #fabc04
 
 	.app
 		display: flex
@@ -78,7 +78,8 @@
 		font-family: 'Poppins'
 
 	.title-bar, .footer
-		background: #0d1a2c
+		background: #0e430d
+		z-index: 10
 
 	.title-bar
 		height: 40px

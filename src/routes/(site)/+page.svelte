@@ -3,12 +3,17 @@
 		<div class="catchphrase">
 			Discover the World,<br /> all from one place.
 		</div>
-		<div class="get-started"><i class="fi fi-rr-map-marker" />Start Exploring</div>
+		<a href="/app"
+			><div class="get-started"><i class="fi fi-rr-map-marker" />Start Exploring</div></a
+		>
 	</div>
 	<div class="map-img"><img src="/map-home.png" alt="world map" /></div>
 </div>
 
 <style lang="sass">
+	a
+		text-decoration: none
+		
 	.home
 		height: 100%
 		background: #0e430d
