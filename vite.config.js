@@ -10,6 +10,11 @@ const config = {
 		alias: {
 			'./runtimeConfig': './runtimeConfig.browser'
 		}
+	},
+	server: {
+		fs: {
+			allow: ['./data/']
+		}
 	}
 };
 

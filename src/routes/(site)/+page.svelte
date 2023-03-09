@@ -1,13 +1,7 @@
 <div class="home">
-	<div class="left">
-		<div class="catchphrase">
-			Discover the World,<br /> all from one place.
-		</div>
-		<a href="/app"
-			><div class="get-started"><i class="fi fi-rr-map-marker" />Start Exploring</div></a
-		>
+	<div class="container">
+		<a href="/app"><div class="get-started">Start Exploring</div></a>
 	</div>
-	<div class="map-img"><img src="/map-home.png" alt="world map" /></div>
 </div>
 
 <style lang="sass">
@@ -16,22 +10,19 @@
 		
 	.home
 		height: 100%
-		background: #0e430d
+		background-image: url("/map-home-2.png")
+		-webkit-background-size: cover
+		-moz-background-size: cover
+		-o-background-size: cover
+		background-size: cover
 		display: flex
 		justify-content: space-around
-		align-items: center
-
-	.catchphrase
-		font-size: 52px
-		color: #fabc04
-		height: 100%
-		display: flex
-		flex-direction: column
-		align-items: center
+		align-items: end
 		
 	.get-started
-		color: #0e430d
-		background: #fabc04
+		color: rgb(214,184,115)
+		color: linear-gradient(309deg, rgba(214,184,115,1) 0%, rgba(198,166,97,1) 72%, rgba(247,232,193,1) 100%)
+		border: 2px solid
 		height: 42px
 		width: 200px
 		display: flex
@@ -41,15 +32,21 @@
 		font-weight: 700
 		margin-top: 20px
 		cursor: pointer
+		transition: background-color 0.5s ease
+		margin-bottom: 80px
+
+		&:hover
+			background: rgb(214,184,115)
+			background: linear-gradient(309deg, rgba(214,184,115,1) 0%, rgba(198,166,97,1) 72%, rgba(247,232,193,1) 100%)
+			color: #0e151d
+			border-color: rgb(214,184,115)
+			border-color: linear-gradient(309deg, rgba(214,184,115,1) 0%, rgba(198,166,97,1) 72%, rgba(247,232,193,1) 100%)
 		
 		i
 			margin-right: 6px
 
 	.map-img img
-		height: 380px
-		width: 680px
-
-	i
-		line-height: 0px
+		height: 100vh
+		width: 100vw
 
 </style>

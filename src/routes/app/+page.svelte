@@ -18,7 +18,7 @@
 				[960, 500]
 			]);
 
-		d3.select('svg').call(zoom);
+		d3.select('svg').call(zoom as any);
 		const pathGenerator = d3.geoPath(d3.geoEquirectangular());
 
 		d3.tsv('http://unpkg.com/world-atlas@1.1.4/world/110m.tsv').then((data: any) => {});
@@ -40,18 +40,24 @@
 				.attr('class', 'country')
 				.attr('d', (d: any) => pathGenerator(d))
 				.on('click', (d) => {
-					console.log(d.originalTarget.textContent);
+					changeCountry(d.originalTarget.textContent);
 				})
 				.append('title')
 				.text((d: any) => countryName[d.id]);
 		});
 	});
+
+	let selectedCountry: any;
+	function changeCountry(country: string) {
+		console.log(country);
+		selectedCountry.textContent = country;
+	}
 </script>
 
 <div class="app">
 	<div class="title-bar">
 		<div class="selected-country">
-			<span id="selectedCountry">Country Name</span>
+			<span bind:this={selectedCountry} id="selectedCountry">Country Name</span>
 		</div>
 	</div>
 
