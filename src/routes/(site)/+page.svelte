@@ -41,12 +41,5 @@
 			color: #0e151d
 			border-color: rgb(214,184,115)
 			border-color: linear-gradient(309deg, rgba(214,184,115,1) 0%, rgba(198,166,97,1) 72%, rgba(247,232,193,1) 100%)
-		
-		i
-			margin-right: 6px
-
-	.map-img img
-		height: 100vh
-		width: 100vw
 
 </style>

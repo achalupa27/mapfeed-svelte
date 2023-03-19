@@ -3,23 +3,28 @@
 	import * as d3 from 'd3';
 	import { onMount } from 'svelte';
 
+
 	function handleZoom(e: any) {
 		d3.select('svg').attr('transform', e.transform);
 	}
 
 	onMount(() => {
 		const svg = d3.select('svg');
-		let zoom = d3
-			.zoom()
-			.on('zoom', handleZoom)
-			.scaleExtent([1, 5])
-			.translateExtent([
-				[0, 0],
-				[960, 500]
-			]);
+		let zoom = d3.zoom().on('zoom', handleZoom).scaleExtent([1, 5]);
+		// .translateExtent([
+		// 	[0, 0],
+		// 	[960, 500]
+		// ]);
 
+		const width = 1460;
+		const height = 900;
 		d3.select('svg').call(zoom as any);
-		const pathGenerator = d3.geoPath(d3.geoEquirectangular());
+		const pathGenerator = d3.geoPath(
+			d3
+				.geoEquirectangular()
+				.scale(120)
+				.translate([width / 2, height / 2])
+		);
 
 		d3.tsv('http://unpkg.com/world-atlas@1.1.4/world/110m.tsv').then((data: any) => {});
 
@@ -40,6 +45,7 @@
 				.attr('class', 'country')
 				.attr('d', (d: any) => pathGenerator(d))
 				.on('click', (d) => {
+					console.log(d);
 					changeCountry(d.originalTarget.textContent);
 				})
 				.append('title')
@@ -48,63 +54,86 @@
 	});
 
 	let selectedCountry: any;
+	let population: any;
 	function changeCountry(country: string) {
-		console.log(country);
-		selectedCountry.textContent = country;
+		let countryData = map.get(country);
+		if (countryData !== undefined) {
+			selectedCountry.textContent = country;
+			population.textContent = countryData.Population;
+		}
 	}
 </script>
 
 <div class="app">
 	<div class="title-bar">
 		<div class="selected-country">
-			<span bind:this={selectedCountry} id="selectedCountry">Country Name</span>
+			<span bind:this={selectedCountry}>Click a country!</span>
 		</div>
 	</div>
 
 	<div class="map">
-		<svg width="960" height="500" />
+		<svg width="100%" height="100%" />
 	</div>
 
 	<div class="footer">
-		<div class="statistics" />
+		<div class="statistics">
+			<p>Population: <span bind:this={population} /></p>
+		</div>
 	</div>
 </div>
 
 <style lang="sass">
 	:global(.country)
 		fill: #0e430d
+		stroke: white
 
 		&:hover
-			fill: #fabc04
+			fill: white
+
+	p
+		margin: 0
 
 	.app
 		display: flex
 		flex-direction: column
-		height: 100%
+		height: 100vh
 		font-family: 'Poppins'
 
-	.title-bar, .footer
-		background: #0e430d
-		z-index: 10
-
 	.title-bar
+		z-index: 10	
 		height: 40px
+		position: absolute
+		top: 0
+		width: calc(100% - 16px)
+		color: white
+		margin: 8px
+		border: 1px solid white
+		border-radius: 4px
+		background: #1a2b41
 		display: flex
 		justify-content: center
 		align-items: center
-
-	.selected-country
-		color: white
+		opacity: 0.8
+		box-shadow: 0px 1px 3px rgb(255 255 255 / 0.5)
 
 	.footer
+		z-index: 10	
+		position: absolute
+		bottom: 0
 		height: 30%
+		width: calc(100% - 32px)
+		color: white
+		margin: 8px
+		border: 1px solid white
+		border-radius: 4px
+		padding: 8px
+		background: #1a2b41
+		opacity: 0.8
+		box-shadow: 0px 1px 3px rgb(255 255 255 / 0.5)
 
 	.map
 		height: 100%
-		display: flex
 		background: #1a2b41
 		flex-grow: 1
-		justify-content: center
-		align-items: center
 
 </style>
